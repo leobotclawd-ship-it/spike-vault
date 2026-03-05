@@ -98,11 +98,6 @@ function DeckCard({ deck }: { deck: DeckList }) {
   );
 }
 
-const contentTypeIcons: Record<string, string> = {
-  article: "Article",
-  video: "Video",
-  stream: "Stream",
-};
 
 export default function FormatPage({ params }: { params: { slug: string } }) {
   const format = getFormatBySlug(params.slug);
@@ -188,33 +183,7 @@ export default function FormatPage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
-      {/* Pro Content */}
-      <section className="mb-10">
-        <h2 className="mb-4 text-xl font-bold text-gold-400">Pro Content</h2>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {format.proContent.map((content) => (
-            <a
-              key={content.title}
-              href={content.url}
-              className="group rounded-xl border border-border bg-bg-secondary p-4 transition-colors hover:border-gold-700/50"
-            >
-              <div className="mb-2 flex items-center gap-2">
-                <span className="rounded bg-bg-tertiary px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-gold-500">
-                  {contentTypeIcons[content.type]}
-                </span>
-                <span className="text-xs text-neutral-500">
-                  by {content.author}
-                </span>
-              </div>
-              <h3 className="text-sm font-medium text-neutral-200 transition-colors group-hover:text-gold-400">
-                {content.title}
-              </h3>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      {/* Format Navigation */}
+{/* Format Navigation */}
       <section className="border-t border-border pt-8">
         <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-neutral-500">
           Other Formats
