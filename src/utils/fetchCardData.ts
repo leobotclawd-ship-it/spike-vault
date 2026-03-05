@@ -1,4 +1,9 @@
-﻿/**
+/**
+ * Scryfall API Utilities for SpikeVault
+ * Fetches Magic card data with caching and memoization
+ */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/**
  * Scryfall API Utilities for SpikeVault
  * Fetches Magic card data with caching and memoization
  */
@@ -128,8 +133,8 @@ export async function fetchCardData(
       }
 
       // Get the first match and fetch full details
-      const cardName = autocompleteData.data[0];
-      cardData = await fetchCardDataByExactName(cardName);
+      const selectedCardName = autocompleteData.data[0];
+      cardData = await fetchCardDataByExactName(selectedCardName);
     } else {
       const scryfallCard = await response.json();
       cardData = parseScryfallCard(scryfallCard);
@@ -266,3 +271,4 @@ export function getScryfallCacheStats() {
     keys: Array.from(cache.keys()),
   };
 }
+

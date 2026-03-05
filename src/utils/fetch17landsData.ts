@@ -1,4 +1,9 @@
-﻿/**
+/**
+ * 17Lands API Utilities for SpikeVault
+ * Fetches Limited format data (Draft/Sealed) with caching
+ */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/**
  * 17Lands API Utilities for SpikeVault
  * Fetches Limited format data (Draft/Sealed) with caching
  */
@@ -232,3 +237,4 @@ export function get17LandsCacheStats() {
     keys: Array.from(cache.keys()),
   };
 }
+

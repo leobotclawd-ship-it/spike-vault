@@ -1,4 +1,9 @@
-﻿/**
+/**
+ * Test script for Phase 1 API utilities
+ * Tests 17Lands and Scryfall APIs with logging
+ */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/**
  * Test script for Phase 1 API utilities
  * Tests 17Lands and Scryfall APIs with logging
  */
@@ -8,7 +13,7 @@
 // ============================================================================
 
 async function runTests() {
-  console.log("🧪 SpikeVault Phase 1 API Test Suite\n");
+  console.log("?? SpikeVault Phase 1 API Test Suite\n");
 
   // Test 1: Scryfall API
   console.log("=".repeat(50));
@@ -26,7 +31,7 @@ async function runTests() {
 
     if (scryfallRes.ok) {
       const cardData = await scryfallRes.json();
-      console.log("✅ Scryfall API Response:");
+      console.log("? Scryfall API Response:");
       console.log(`   Name: ${cardData.name}`);
       console.log(`   Mana Cost: ${cardData.mana_cost}`);
       console.log(`   Type: ${cardData.type_line}`);
@@ -34,10 +39,10 @@ async function runTests() {
       console.log(`   Set: ${cardData.set.toUpperCase()}`);
       console.log(`   Image: ${cardData.image_uris?.normal ? "Available" : "N/A"}`);
     } else {
-      console.log(`❌ Scryfall API Error: ${scryfallRes.status}`);
+      console.log(`? Scryfall API Error: ${scryfallRes.status}`);
     }
   } catch (error) {
-    console.log(`❌ Scryfall Test Error: ${error.message}`);
+    console.log(`? Scryfall Test Error: ${error instanceof Error ? error.message : String(error)}`);
   }
 
   // Test 2: 17Lands API
@@ -61,7 +66,7 @@ async function runTests() {
 
     if (archetypesRes.ok) {
       const archetypesData = await archetypesRes.json();
-      console.log(`✅ 17Lands Archetypes Response:`);
+      console.log(`? 17Lands Archetypes Response:`);
       console.log(`   Total archetypes: ${(archetypesData.archetypes || []).length}`);
       
       if (archetypesData.archetypes && archetypesData.archetypes.length > 0) {
@@ -72,7 +77,7 @@ async function runTests() {
         console.log(`   Games: ${arch.count}`);
       }
     } else {
-      console.log(`❌ 17Lands Archetypes Error: ${archetypesRes.status}`);
+      console.log(`? 17Lands Archetypes Error: ${archetypesRes.status}`);
     }
 
     // Fetch card stats
@@ -81,13 +86,13 @@ async function runTests() {
 
     if (cardStatsRes.ok) {
       const cardStatsData = await cardStatsRes.json();
-      console.log(`\n✅ 17Lands Card Stats Response:`);
+      console.log(`\n? 17Lands Card Stats Response:`);
       console.log(`   Total cards: ${(cardStatsData.data || cardStatsData).length || "N/A"}`);
       
       const cards = Array.isArray(cardStatsData) ? cardStatsData : cardStatsData.data || [];
       if (cards.length > 0) {
         // Find the card with highest GPWR
-        const topCard = cards.reduce((best, card) => {
+        const topCard = cards.reduce((best: any, card: any) => {
           const bestGpwr = best.gpwr || best.game_win_rate || 0;
           const cardGpwr = card.gpwr || card.game_win_rate || 0;
           return cardGpwr > bestGpwr ? card : best;
@@ -98,16 +103,18 @@ async function runTests() {
         console.log(`   Usage: ${topCard.count || topCard.num_games || "N/A"} games`);
       }
     } else {
-      console.log(`❌ 17Lands Card Stats Error: ${cardStatsRes.status}`);
+      console.log(`? 17Lands Card Stats Error: ${cardStatsRes.status}`);
     }
   } catch (error) {
-    console.log(`❌ 17Lands Test Error: ${error.message}`);
+    console.log(`? 17Lands Test Error: ${error instanceof Error ? error.message : String(error)}`);
   }
 
   console.log("\n" + "=".repeat(50));
-  console.log("✅ Test suite completed!");
+  console.log("? Test suite completed!");
   console.log("=".repeat(50));
 }
 
 // Run tests
 runTests().catch(console.error);
+
+
