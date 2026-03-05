@@ -1,10 +1,25 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import MacroCalendar from '@/components/schedule/MacroCalendar';
-import DetailedSchedule from '@/components/schedule/DetailedSchedule';
+import Link from "next/link";
+import { useState } from "react";
+import MacroCalendar from "@/components/schedule/MacroCalendar";
+import DetailedSchedule from "@/components/schedule/DetailedSchedule";
 
 export default function SchedulePage() {
+  const [filters, setFilters] = useState({
+    major: true,
+    tabletop: true,
+    arena: true,
+    mtgo: true,
+  });
+
+  const handleFilterChange = (category: keyof typeof filters) => {
+    setFilters((prev) => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
       {/* Breadcrumb */}
@@ -22,13 +37,79 @@ export default function SchedulePage() {
           2026 Event Schedule
         </h1>
         <p className="mt-2 text-neutral-400">
-          Complete Magic competitive calendar with major tournaments, from today through end of year.
+          Complete Magic competitive calendar with major tournaments, from
+          today through end of year.
+        </p>
+      </div>
+
+      {/* Filter UI */}
+      <div className="mb-10 rounded-xl border border-gold-700/30 bg-gradient-to-br from-gold-950/20 to-gold-900/10 p-6">
+        <h2 className="mb-4 text-lg font-semibold text-gold-300">
+          Filter Events by Platform
+        </h2>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {/* Major - Always checked and disabled */}
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <input
+              type="checkbox"
+              checked={filters.major}
+              onChange={() => handleFilterChange("major")}
+              disabled
+              className="w-5 h-5 rounded border border-gold-600 bg-gold-950/40 cursor-not-allowed accent-gold-500 checked:bg-gold-600"
+            />
+            <span className="text-sm font-medium text-gold-300 group-hover:text-gold-200 transition-colors">
+              Major Events
+            </span>
+          </label>
+
+          {/* Tabletop */}
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <input
+              type="checkbox"
+              checked={filters.tabletop}
+              onChange={() => handleFilterChange("tabletop")}
+              className="w-5 h-5 rounded border border-gold-600 bg-neutral-950 cursor-pointer accent-gold-500 hover:bg-gold-950/20"
+            />
+            <span className="text-sm font-medium text-neutral-300 group-hover:text-white transition-colors">
+              Paper RCs
+            </span>
+          </label>
+
+          {/* Arena */}
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <input
+              type="checkbox"
+              checked={filters.arena}
+              onChange={() => handleFilterChange("arena")}
+              className="w-5 h-5 rounded border border-gold-600 bg-neutral-950 cursor-pointer accent-gold-500 hover:bg-gold-950/20"
+            />
+            <span className="text-sm font-medium text-neutral-300 group-hover:text-white transition-colors">
+              Arena
+            </span>
+          </label>
+
+          {/* MTGO */}
+          <label className="flex items-center gap-3 cursor-pointer group">
+            <input
+              type="checkbox"
+              checked={filters.mtgo}
+              onChange={() => handleFilterChange("mtgo")}
+              className="w-5 h-5 rounded border border-gold-600 bg-neutral-950 cursor-pointer accent-gold-500 hover:bg-gold-950/20"
+            />
+            <span className="text-sm font-medium text-neutral-300 group-hover:text-white transition-colors">
+              MTGO
+            </span>
+          </label>
+        </div>
+        <p className="mt-4 text-xs text-neutral-400">
+          Major Events (Pro Tours, World Championship, Set Releases) are always
+          displayed.
         </p>
       </div>
 
       {/* Year Timeline at Top (Macro Calendar) */}
       <div className="mb-12 rounded-xl border border-gold-700/30 bg-gradient-to-br from-gold-950/20 to-gold-900/10 p-8">
-        <MacroCalendar />
+        <MacroCalendar filters={filters} />
       </div>
 
       {/* Divider */}
@@ -36,7 +117,7 @@ export default function SchedulePage() {
 
       {/* Month Calendar (Detailed Schedule) */}
       <div className="mb-12">
-        <DetailedSchedule />
+        <DetailedSchedule filters={filters} />
       </div>
 
       {/* Legend */}
@@ -82,35 +163,37 @@ export default function SchedulePage() {
         <div className="rounded-xl border border-neutral-700 bg-neutral-900/50 p-6">
           <div className="space-y-6">
             <div>
-              <h3 className="mb-2 font-semibold text-white">
-                🎮 Arena Direct
-              </h3>
+              <h3 className="mb-2 font-semibold text-white">?? Arena Direct</h3>
               <p className="text-sm leading-relaxed text-neutral-400">
-                Compete in Magic Arena with leaderboard rankings. Direct qualification paths to higher-level tournaments.
+                Compete in Magic Arena with leaderboard rankings. Direct
+                qualification paths to higher-level tournaments.
               </p>
             </div>
             <div>
               <h3 className="mb-2 font-semibold text-white">
-                🏆 Store-Level Events
+                ?? Store-Level Events
               </h3>
               <p className="text-sm leading-relaxed text-neutral-400">
-                Arena Weekends and MTGO Superqualifiers at local game stores and online. Win to qualify for Regional Championships.
+                Arena Weekends and MTGO Superqualifiers at local game stores
+                and online. Win to qualify for Regional Championships.
               </p>
             </div>
             <div>
               <h3 className="mb-2 font-semibold text-white">
-                ⭐ Regional Championships
+                ? Regional Championships
               </h3>
               <p className="text-sm leading-relaxed text-neutral-400">
-                Compete across three seasons (Pioneer, Modern, Standard) for Pro Tour invitations and cash prizes.
+                Compete across three seasons (Pioneer, Modern, Standard) for
+                Pro Tour invitations and cash prizes.
               </p>
             </div>
             <div>
               <h3 className="mb-2 font-semibold text-white">
-                👑 Pro Tour & Worlds
+                ?? Pro Tour & Worlds
               </h3>
               <p className="text-sm leading-relaxed text-neutral-400">
-                Top competitors compete at the highest level with the Magic World Championship in December.
+                Top competitors compete at the highest level with the Magic
+                World Championship in December.
               </p>
             </div>
           </div>
@@ -119,9 +202,11 @@ export default function SchedulePage() {
 
       {/* Important Info */}
       <div className="rounded-xl border border-gold-700/50 bg-gold-900/20 p-6 mb-10">
-        <h3 className="font-semibold text-gold-300 mb-2">📅 Event Information</h3>
+        <h3 className="font-semibold text-gold-300 mb-2">?? Event Information</h3>
         <p className="text-sm text-neutral-300">
-          This calendar shows the 2026 Magic competitive season. Dates and formats are subject to change. Check the official Magic Competitive website for the most up-to-date information.
+          This calendar shows the 2026 Magic competitive season. Dates and
+          formats are subject to change. Check the official Magic Competitive
+          website for the most up-to-date information.
         </p>
       </div>
     </div>
