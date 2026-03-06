@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { formats } from "@/data/formats";
+import { scheduleEvents, eventTypeColors } from "@/data/scheduleData";
 
 const formatIcons: Record<string, string> = {
   standard: "S",
@@ -12,7 +13,22 @@ const formatIcons: Record<string, string> = {
   limited: "Li",
 };
 
+// Get upcoming major events (next 4-5)
+function getUpcomingMajorEvents() {
+  const today = new Date("2026-03-06");
+  const upcoming = scheduleEvents
+    .filter((event) => {
+      const eventDate = new Date(event.startDate);
+      return eventDate >= today && event.category === "major";
+    })
+    .sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime())
+    .slice(0, 5);
+  return upcoming;
+}
+
 export default function Home() {
+  const upcomingEvents = getUpcomingMajorEvents();
+
   return (
     <>
       {/* Hero */}
@@ -32,29 +48,98 @@ export default function Home() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              href="/format/modern"
+              href="/schedule"
               className="rounded-lg bg-gold-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gold-500"
             >
-              Explore Modern
+              Competitive Schedule
             </Link>
             <Link
-              href="/schedule"
-              className="rounded-lg border border-border-light px-5 py-2.5 text-sm font-semibold text-neutral-300 transition-colors hover:border-gold-700 hover:text-gold-400"
+              href="/format/standard"
+              className="rounded-lg bg-gold-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gold-500"
             >
-              Event Schedule
+              Standard
+            </Link>
+            <Link
+              href="/format/limited"
+              className="rounded-lg bg-gold-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gold-500"
+            >
+              Limited
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Format Cards Grid */}
+      {/* Upcoming Major Events */}
+      <section className="border-t border-border bg-bg-secondary">
+        <div className="mx-auto max-w-7xl px-4 py-16">
+          <h2 className="mb-2 text-2xl font-bold text-white">
+            Upcoming Major Events
+          </h2>
+          <p className="mb-8 text-neutral-400">
+            Don&apos;t miss the next big tournaments in competitive Magic.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {upcomingEvents.map((event) => {
+              const colors = eventTypeColors[event.type as keyof typeof eventTypeColors] || {
+                bg: "bg-neutral-900/30",
+                text: "text-neutral-300",
+                border: "border-neutral-700/50",
+              };
+              const eventDate = new Date(event.startDate);
+              const formattedDate = eventDate.toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+              });
+
+              return (
+                <Link
+                  key={event.id}
+                  href="/schedule"
+                  className={`rounded-lg border p-4 transition-all ${colors.border} ${colors.bg} hover:border-gold-700/50 hover:bg-gold-900/20`}
+                >
+                  <div className={`mb-2 text-xs font-semibold uppercase tracking-wide ${colors.text}`}>
+                    {event.type === "pro-tour"
+                      ? "Pro Tour"
+                      : event.type === "rc"
+                      ? "Regional Championship"
+                      : event.type === "arena-direct"
+                      ? "Arena Direct"
+                      : event.type === "arena-weekend"
+                      ? "Arena Weekend"
+                      : event.type === "sq-mtgo"
+                      ? "SQ MTGO"
+                      : "Set Release"}
+                  </div>
+                  <h3 className="text-sm font-semibold text-white line-clamp-2">
+                    {event.name}
+                  </h3>
+                  <div className="mt-2 text-xs text-neutral-400">
+                    {formattedDate}
+                  </div>
+                  {event.location && (
+                    <div className="mt-1 text-xs text-neutral-500">
+                      📍 {event.location}
+                    </div>
+                  )}
+                  {event.format && (
+                    <div className="mt-2 text-xs text-gold-400">
+                      {event.format} →
+                    </div>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* All Formats Grid */}
       <section className="mx-auto max-w-7xl px-4 py-16">
         <h2 className="mb-2 text-2xl font-bold text-white">
-          Browse by Format
+          All Formats
         </h2>
         <p className="mb-8 text-neutral-400">
-          Dive into metagame data, top decks, and pro content for each
-          competitive format.
+          Explore metagame data, top decks, and matchup breakdowns for every competitive format.
         </p>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {formats.map((format) => (
@@ -80,34 +165,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quick Links */}
-      <section className="border-t border-border bg-bg-secondary">
-        <div className="mx-auto max-w-7xl px-4 py-12">
-          <div className="grid gap-6 sm:grid-cols-3">
-            <div className="rounded-xl border border-border bg-bg-primary p-6">
-              <h3 className="font-semibold text-gold-400">Metagame Data</h3>
-              <p className="mt-2 text-sm text-neutral-400">
-                Meta share percentages, tier lists, and archetype breakdowns for
-                every format.
-              </p>
-            </div>
-            <div className="rounded-xl border border-border bg-bg-primary p-6">
-              <h3 className="font-semibold text-gold-400">Stock Decklists</h3>
-              <p className="mt-2 text-sm text-neutral-400">
-                Proven lists with key cards highlighted. Know what to play and
-                what to expect.
-              </p>
-            </div>
-            <div className="rounded-xl border border-border bg-bg-primary p-6">
-              <h3 className="font-semibold text-gold-400">Pro Content</h3>
-              <p className="mt-2 text-sm text-neutral-400">
-                Curated articles, videos, and streams from the best competitive
-                players.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

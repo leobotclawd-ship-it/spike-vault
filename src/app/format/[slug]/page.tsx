@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+﻿import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
   formats,
@@ -6,6 +6,7 @@ import {
   getAllFormatSlugs,
   type DeckList,
 } from "@/data/formats";
+import UpcomingTournaments from "@/components/formats/UpcomingTournaments";
 
 export function generateStaticParams() {
   return getAllFormatSlugs().map((slug) => ({ slug }));
@@ -78,8 +79,7 @@ function DeckCard({ deck }: { deck: DeckList }) {
         </div>
         <TierBadge tier={deck.tier} />
       </div>
-      <p className="mb-3 text-sm text-neutral-400">{deck.description}</p>
-      <div>
+      <div className="mb-4">
         <h4 className="mb-1.5 text-xs font-medium uppercase tracking-wider text-neutral-500">
           Key Cards
         </h4>
@@ -93,6 +93,14 @@ function DeckCard({ deck }: { deck: DeckList }) {
             </span>
           ))}
         </div>
+      </div>
+      <div>
+        <Link
+          href={`#deck-guide-${deck.name.replace(/\s+/g, "-").toLowerCase()}`}
+          className="text-xs font-medium text-gold-400 transition-colors hover:text-gold-300"
+        >
+          View Deck Guide →
+        </Link>
       </div>
     </div>
   );
@@ -125,15 +133,18 @@ export default function FormatPage({ params }: { params: { slug: string } }) {
         <p className="mt-2 text-neutral-400">{format.description}</p>
       </div>
 
-      {/* Metagame Overview */}
+      {/* Matchup Matrix Placeholder */}
       <section className="mb-10">
         <h2 className="mb-4 text-xl font-bold text-gold-400">
-          Metagame Overview
+          Matchup Matrix
         </h2>
-        <div className="rounded-xl border border-border bg-bg-secondary p-6">
-          <p className="leading-relaxed text-neutral-300">
-            {format.metaOverview}
-          </p>
+        <div className="flex min-h-[200px] items-center justify-center rounded-xl border border-dashed border-border-light bg-bg-secondary">
+          <div className="text-center">
+            <p className="text-neutral-500">Matchup matrix coming soon</p>
+            <p className="mt-1 text-xs text-neutral-600">
+              Win rates and matchup data between top archetypes
+            </p>
+          </div>
         </div>
       </section>
 
@@ -168,22 +179,10 @@ export default function FormatPage({ params }: { params: { slug: string } }) {
         )}
       </section>
 
-      {/* Matchup Matrix Placeholder */}
-      <section className="mb-10">
-        <h2 className="mb-4 text-xl font-bold text-gold-400">
-          Matchup Matrix
-        </h2>
-        <div className="flex min-h-[200px] items-center justify-center rounded-xl border border-dashed border-border-light bg-bg-secondary">
-          <div className="text-center">
-            <p className="text-neutral-500">Matchup matrix coming soon</p>
-            <p className="mt-1 text-xs text-neutral-600">
-              Win rates and matchup data between top archetypes
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Upcoming Tournaments */}
+      <UpcomingTournaments format={format.slug} limit={5} />
 
-{/* Format Navigation */}
+      {/* Format Navigation */}
       <section className="border-t border-border pt-8">
         <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-neutral-500">
           Other Formats

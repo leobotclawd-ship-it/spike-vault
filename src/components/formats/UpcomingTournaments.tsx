@@ -1,4 +1,4 @@
-import { scheduleEvents, eventTypeColors } from "@/data/scheduleData";
+﻿import { scheduleEvents, eventTypeColors } from "@/data/scheduleData";
 
 interface UpcomingTournamentsProps {
   format?: string;
@@ -46,6 +46,7 @@ export default function UpcomingTournaments({
   limit = 5,
 }: UpcomingTournamentsProps) {
   // Filter events based on format if provided, and future events
+  // Only show major tournaments: Pro Tour, World Championship, Arena Championships (Weekends), MOCS (sq-mtgo)
   const today = new Date();
   const filteredEvents = scheduleEvents
     .filter((event) => {
@@ -54,8 +55,6 @@ export default function UpcomingTournaments({
       const isRelevantFormat = !format || !event.format || event.format.includes(format);
       const isRelevantType =
         event.type === "pro-tour" ||
-        event.type === "rc" ||
-        event.type === "arena-direct" ||
         event.type === "arena-weekend" ||
         event.type === "sq-mtgo";
       return isFuture && isRelevantFormat && isRelevantType;
