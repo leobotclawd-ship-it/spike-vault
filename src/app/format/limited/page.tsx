@@ -1,5 +1,6 @@
 ﻿'use client';
 
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import SetSelector from '@/components/limited/SetSelector';
@@ -9,7 +10,7 @@ import SetInfoPanel from '@/components/limited/SetInfoPanel';
 import UpcomingTournaments from '@/components/formats/UpcomingTournaments';
 import { getAllLimitedSets } from '@/data/formats';
 
-export default function LimitedPage() {
+function LimitedPageContent() {
   const searchParams = useSearchParams();
   const sets = getAllLimitedSets();
   const currentSet = searchParams.get('set') || sets[0]?.setCode || 'TMNT';
@@ -45,5 +46,13 @@ export default function LimitedPage() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function LimitedPage() {
+  return (
+    <Suspense fallback={<div className="p-10 text-center text-neutral-400">Loading...</div>}>
+      <LimitedPageContent />
+    </Suspense>
   );
 }
