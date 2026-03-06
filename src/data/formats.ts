@@ -2813,7 +2813,8 @@ export function getFormatBySlug(slug: string): FormatData | undefined {
 }
 
 export function getAllFormatSlugs(): string[] {
-  return formats.map((f) => f.slug);
+  // Exclude 'limited' because it has its own specific route at /format/limited/page.tsx
+  return formats.map((f) => f.slug).filter((slug) => slug !== 'limited');
 }
 
 export function getLimitedSetByCode(setCode: string): LimitedSet | undefined {
