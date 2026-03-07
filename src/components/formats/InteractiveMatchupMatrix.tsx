@@ -56,72 +56,33 @@ export default function InteractiveMatchupMatrix() {
 
   return (
     <div className="w-full">
-      <div className="mb-6 flex flex-col gap-4">
-        <div>
-          <h3 className="mb-2 text-xs font-semibold uppercase text-neutral-500">Hide from rows (left side):</h3>
-          <div className="flex flex-wrap gap-1.5">
-            {allDecks.map(deck => (
-              <button
-                key={`row-${deck}`}
-                onClick={() => toggleRow(deck)}
-                className={`px-2 py-1 rounded text-xs font-medium transition-all ${
-                  hiddenRows.has(deck)
-                    ? 'bg-red-900/40 text-red-300 line-through'
-                    : 'bg-gold-900/30 text-gold-300 border border-gold-700/50'
-                }`}
-              >
-                {deck}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h3 className="mb-2 text-xs font-semibold uppercase text-neutral-500">Hide from columns (top):</h3>
-          <div className="flex flex-wrap gap-1.5">
-            {allDecks.map(deck => (
-              <button
-                key={`col-${deck}`}
-                onClick={() => toggleCol(deck)}
-                className={`px-2 py-1 rounded text-xs font-medium transition-all ${
-                  hiddenCols.has(deck)
-                    ? 'bg-red-900/40 text-red-300 line-through'
-                    : 'bg-blue-900/30 text-blue-300 border border-blue-700/50'
-                }`}
-              >
-                {deck}
-              </button>
-            ))}
-          </div>
-        </div>
-
+      <div className="mb-4 flex items-center justify-between">
+        <p className="text-xs text-neutral-400">
+          Click row or column header to hide. Showing {visibleRows.length}×{visibleCols.length}
+        </p>
         <button
           onClick={resetView}
-          className="self-start px-4 py-2 rounded-lg bg-gold-600 hover:bg-gold-500 text-white font-medium text-sm transition-colors"
+          className="px-3 py-1.5 rounded text-xs bg-gold-600 hover:bg-gold-500 text-white font-medium transition-colors"
         >
-          Reset All
+          Reset
         </button>
-
-        <p className="text-xs text-neutral-400">
-          📊 Rows hidden: {hiddenRows.size} | Columns hidden: {hiddenCols.size} | Showing {visibleRows.length}×{visibleCols.length} grid
-        </p>
       </div>
 
       <div className="overflow-x-auto rounded-lg border border-border bg-bg-secondary">
-        <table className="text-sm">
+        <table className="text-base">
           <thead className="bg-bg-tertiary border-b border-border sticky top-0">
             <tr>
-              <th className="px-3 py-2 text-left text-gold-400 font-semibold sticky left-0 z-10 bg-bg-tertiary min-w-[90px] max-w-[90px]">Deck</th>
-              <th className="px-2 py-2 text-center text-neutral-300 font-semibold min-w-[40px]">%</th>
-              <th className="px-2 py-2 text-center text-neutral-300 font-semibold min-w-[40px]">WR</th>
+              <th className="px-4 py-3 text-left text-gold-400 font-semibold sticky left-0 z-10 bg-bg-tertiary min-w-[100px]">Deck</th>
+              <th className="px-3 py-3 text-center text-neutral-300 font-semibold min-w-[50px]">%</th>
+              <th className="px-3 py-3 text-center text-neutral-300 font-semibold min-w-[50px]">WR</th>
               {visibleCols.map(deck => (
                 <th
                   key={deck}
-                  className="px-1.5 py-2 text-center text-neutral-300 font-semibold min-w-[50px] max-w-[50px] cursor-pointer hover:bg-blue-900/30 transition-colors"
+                  className="px-2 py-3 text-center text-neutral-300 font-semibold min-w-[65px] cursor-pointer hover:bg-gold-900/30 transition-colors select-none"
                   onClick={() => toggleCol(deck)}
-                  title={`Click to hide column: ${deck}`}
+                  title={`Click to hide: ${deck}`}
                 >
-                  <span className="text-[10px] leading-tight">{deckAbbreviations[deck] || deck.substring(0, 3)}</span>
+                  <span className="text-xs font-medium">{deckAbbreviations[deck] || deck.substring(0, 3)}</span>
                 </th>
               ))}
             </tr>
@@ -137,14 +98,14 @@ export default function InteractiveMatchupMatrix() {
                   }`}
                 >
                   <td
-                    className="px-3 py-2 font-medium text-white text-xs cursor-pointer hover:text-gold-400 sticky left-0 z-10 bg-inherit max-w-[90px] overflow-hidden text-ellipsis whitespace-nowrap"
+                    className="px-4 py-3 font-medium text-white text-sm cursor-pointer hover:text-gold-400 sticky left-0 z-10 bg-inherit min-w-[100px] overflow-hidden text-ellipsis whitespace-nowrap select-none"
                     onClick={() => toggleRow(matchup.deckName)}
-                    title={`Click to hide row: ${matchup.deckName}`}
+                    title={`Click to hide: ${matchup.deckName}`}
                   >
                     {matchup.deckName}
                   </td>
-                  <td className="px-2 py-2 text-center text-xs text-neutral-300">{matchup.metaShare}</td>
-                  <td className="px-2 py-2 text-center text-xs text-gold-300 font-semibold">{matchup.overallWinrate}</td>
+                  <td className="px-3 py-3 text-center text-sm text-neutral-300">{matchup.metaShare}</td>
+                  <td className="px-3 py-3 text-center text-sm font-semibold text-gold-300">{matchup.overallWinrate}</td>
                   {visibleCols.map(opponentDeck => {
                     const wr = matchup.matchups[opponentDeck];
                     const isNotApplicable = wr === null;
@@ -163,11 +124,11 @@ export default function InteractiveMatchupMatrix() {
                     return (
                       <td
                         key={opponentDeck}
-                        className={`px-1.5 py-2 text-center text-[10px] min-w-[50px] max-w-[50px] ${bgColor} ${
-                          isNotApplicable ? 'text-neutral-400' : 'text-neutral-200'
-                        } border-l border-border/30`}
+                        className={`px-2 py-3 text-center text-sm font-medium min-w-[65px] ${bgColor} ${
+                          isNotApplicable ? 'text-neutral-400' : 'text-neutral-100'
+                        } border-l border-border/30 cursor-pointer hover:opacity-80 transition-opacity select-none`}
                       >
-                        {isNotApplicable ? 'M' : wr?.replace('% ', '%\n') || '—'}
+                        {isNotApplicable ? 'M' : wr}
                       </td>
                     );
                   })}
@@ -176,11 +137,6 @@ export default function InteractiveMatchupMatrix() {
           </tbody>
         </table>
       </div>
-
-      <p className="mt-4 text-xs text-neutral-500">
-        💡 Click row labels (left) to hide decks from comparison. Click column headers (top) to hide opponent matchups.
-        <br />Green = favored (60%+), Red = unfavored (&lt;40%). <strong>M</strong> = Mirror match.
-      </p>
     </div>
   );
 }
