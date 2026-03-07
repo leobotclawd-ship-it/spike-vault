@@ -72,9 +72,9 @@ export default function InteractiveMatchupMatrix() {
         <table className="text-base">
           <thead className="bg-bg-tertiary border-b border-border sticky top-0">
             <tr>
-              <th className="px-2 py-3 text-left text-gold-400 font-semibold sticky left-0 z-10 bg-bg-tertiary min-w-[50px] text-xs">Deck</th>
-              <th className="px-3 py-3 text-center text-neutral-300 font-semibold min-w-[50px]">%</th>
-              <th className="px-3 py-3 text-center text-neutral-300 font-semibold min-w-[50px]">WR</th>
+              <th className="px-3 py-3 text-left text-gold-400 font-semibold sticky left-0 z-10 bg-bg-tertiary min-w-[75px] text-xs">Deck</th>
+              <th className="px-2 py-3 text-center text-neutral-300 font-semibold min-w-[50px] text-xs">Meta%</th>
+              <th className="px-2 py-3 text-center text-neutral-300 font-semibold min-w-[40px] text-xs">WR</th>
               {visibleCols.map(deck => (
                 <th
                   key={deck}
@@ -98,14 +98,14 @@ export default function InteractiveMatchupMatrix() {
                   }`}
                 >
                   <td
-                    className="px-2 py-3 font-medium text-white text-xs cursor-pointer hover:text-gold-400 sticky left-0 z-10 bg-inherit min-w-[50px] max-w-[50px] whitespace-normal break-words select-none"
+                    className="px-3 py-3 font-medium text-white text-xs cursor-pointer hover:text-gold-400 sticky left-0 z-10 bg-inherit min-w-[75px] max-w-[75px] whitespace-normal break-words select-none"
                     onClick={() => toggleRow(matchup.deckName)}
                     title={`Click to hide: ${matchup.deckName}`}
                   >
                     {matchup.deckName}
                   </td>
-                  <td className="px-3 py-3 text-center text-sm text-neutral-300">{matchup.metaShare}</td>
-                  <td className="px-3 py-3 text-center text-sm font-semibold text-gold-300">{matchup.overallWinrate}</td>
+                  <td className="px-2 py-3 text-center text-xs text-neutral-300">{matchup.metaShare}</td>
+                  <td className="px-2 py-3 text-center text-xs font-semibold text-gold-300">{matchup.overallWinrate}</td>
                   {visibleCols.map(opponentDeck => {
                     const wr = matchup.matchups[opponentDeck];
                     const isNotApplicable = wr === null;
