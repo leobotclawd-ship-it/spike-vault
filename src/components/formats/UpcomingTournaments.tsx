@@ -69,12 +69,12 @@ export default function UpcomingTournaments({
   if (filteredEvents.length === 0) {
     return (
       <section className="mb-10">
-        <h2 className="mb-4 text-xl font-bold text-gold-400">
+        <h2 className="mb-4 text-xl font-bold text-gold-600 dark:text-gold-400">
           Upcoming Tournaments
         </h2>
-        <div className="flex min-h-[150px] items-center justify-center rounded-xl border border-dashed border-border-light bg-bg-secondary">
+        <div className="flex min-h-[150px] items-center justify-center rounded-xl border border-dashed border-neutral-300 dark:border-border-light bg-neutral-50 dark:bg-bg-secondary">
           <div className="text-center">
-            <p className="text-neutral-500">No upcoming tournaments scheduled</p>
+            <p className="text-neutral-600 dark:text-neutral-500">No upcoming tournaments scheduled</p>
           </div>
         </div>
       </section>
@@ -83,7 +83,7 @@ export default function UpcomingTournaments({
 
   return (
     <section className="mb-10">
-      <h2 className="mb-4 text-xl font-bold text-gold-400">
+      <h2 className="mb-4 text-xl font-bold text-gold-600 dark:text-gold-400">
         Upcoming Tournaments
       </h2>
       <div className="space-y-3">
@@ -97,17 +97,17 @@ export default function UpcomingTournaments({
             <a
               key={event.id}
               href={event.tournamentPageUrl || "#"}
-              className={`group block rounded-lg border p-4 transition-colors ${typeColors.bg} ${typeColors.border} border hover:border-gold-700/50`}
+              className={`group block rounded-lg border p-4 transition-colors ${typeColors.bg} ${typeColors.border} border hover:border-gold-600 dark:hover:border-gold-700/50`}
             >
               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{getEventTypeIcon(event.type)}</span>
-                    <h3 className={`font-semibold transition-colors group-hover:text-gold-400 ${typeColors.text}`}>
+                    <h3 className={`font-semibold transition-colors group-hover:text-gold-600 dark:group-hover:text-gold-400 ${typeColors.text}`}>
                       {event.name}
                     </h3>
                   </div>
-                  <div className="mt-2 flex flex-col gap-1 text-sm text-neutral-400 sm:flex-row sm:items-center sm:gap-3">
+                  <div className="mt-2 flex flex-col gap-1 text-sm text-neutral-600 dark:text-neutral-400 sm:flex-row sm:items-center sm:gap-3">
                     <span>📅 {formatDate(event.startDate)}</span>
                     {event.location && (
                       <span>📍 {event.location}</span>

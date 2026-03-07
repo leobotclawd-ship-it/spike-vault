@@ -52,9 +52,9 @@ function ColorPips({ colors }: { colors: string[] }) {
 
 function TierBadge({ tier }: { tier: 1 | 2 | 3 }) {
   const styles = {
-    1: "bg-gold-900/40 text-gold-400 border-gold-700/50",
-    2: "bg-neutral-800 text-neutral-300 border-neutral-700",
-    3: "bg-neutral-900 text-neutral-500 border-neutral-800",
+    1: "bg-gold-100 dark:bg-gold-900/40 text-gold-700 dark:text-gold-400 border-gold-300 dark:border-gold-700/50",
+    2: "bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-700",
+    3: "bg-neutral-200 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-500 border-neutral-300 dark:border-neutral-800",
   };
   return (
     <span
@@ -67,13 +67,13 @@ function TierBadge({ tier }: { tier: 1 | 2 | 3 }) {
 
 function DeckCard({ deck }: { deck: DeckList }) {
   return (
-    <div className="rounded-xl border border-border bg-bg-secondary p-5 transition-colors hover:border-border-light">
+    <div className="rounded-xl border border-neutral-200 dark:border-border bg-white dark:bg-bg-secondary p-5 transition-colors hover:border-neutral-300 dark:hover:border-border-light">
       <div className="mb-3 flex items-start justify-between">
         <div>
-          <h3 className="font-semibold text-white">{deck.name}</h3>
+          <h3 className="font-semibold text-neutral-900 dark:text-white">{deck.name}</h3>
           <div className="mt-1 flex items-center gap-2">
             <ColorPips colors={deck.colors} />
-            <span className="text-xs text-neutral-500">
+            <span className="text-xs text-neutral-600 dark:text-neutral-500">
               {deck.metaShare} meta
             </span>
           </div>
@@ -81,14 +81,14 @@ function DeckCard({ deck }: { deck: DeckList }) {
         <TierBadge tier={deck.tier} />
       </div>
       <div className="mb-4">
-        <h4 className="mb-1.5 text-xs font-medium uppercase tracking-wider text-neutral-500">
+        <h4 className="mb-1.5 text-xs font-medium uppercase tracking-wider text-neutral-600 dark:text-neutral-500">
           Key Cards
         </h4>
         <div className="flex flex-wrap gap-1.5">
           {deck.keyCards.map((card) => (
             <span
               key={card}
-              className="rounded-md bg-bg-tertiary px-2 py-1 text-xs text-neutral-300"
+              className="rounded-md bg-neutral-100 dark:bg-bg-tertiary px-2 py-1 text-xs text-neutral-700 dark:text-neutral-300"
             >
               {card}
             </span>
@@ -98,7 +98,7 @@ function DeckCard({ deck }: { deck: DeckList }) {
       <div>
         <Link
           href={`#deck-guide-${deck.name.replace(/\s+/g, "-").toLowerCase()}`}
-          className="text-xs font-medium text-gold-400 transition-colors hover:text-gold-300"
+          className="text-xs font-medium text-gold-600 dark:text-gold-400 transition-colors hover:text-gold-700 dark:hover:text-gold-300"
         >
           View Deck Guide →
         </Link>
