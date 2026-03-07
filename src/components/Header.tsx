@@ -17,7 +17,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2">
           <span className="text-xl font-bold tracking-tight text-gold-400">
-            SpikeVault
+            MTGProInfo
           </span>
         </Link>
 

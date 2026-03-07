@@ -16,9 +16,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "SpikeVault - Your Competitive MTG Command Center",
+  title: "MTGProInfo - Competitive Magic: The Gathering Resources",
   description:
-    "Free competitive Magic: The Gathering resources. Metagame breakdowns, top decklists, matchup data, and pro content for every format.",
+    "Free competitive Magic: The Gathering resources. Metagame breakdowns, matchup matrices, tournament schedules, and top decklists for every format.",
 };
 
 export default function RootLayout({

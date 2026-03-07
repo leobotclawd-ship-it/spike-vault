@@ -7,6 +7,7 @@ import {
   type DeckList,
 } from "@/data/formats";
 import UpcomingTournaments from "@/components/formats/UpcomingTournaments";
+import InteractiveMatchupMatrix from "@/components/formats/InteractiveMatchupMatrix";
 
 export function generateStaticParams() {
   return getAllFormatSlugs().map((slug) => ({ slug }));
@@ -133,19 +134,23 @@ export default function FormatPage({ params }: { params: { slug: string } }) {
         <p className="mt-2 text-neutral-400">{format.description}</p>
       </div>
 
-      {/* Matchup Matrix Placeholder */}
+      {/* Matchup Matrix */}
       <section className="mb-10">
         <h2 className="mb-4 text-xl font-bold text-gold-400">
           Matchup Matrix
         </h2>
-        <div className="flex min-h-[200px] items-center justify-center rounded-xl border border-dashed border-border-light bg-bg-secondary">
-          <div className="text-center">
-            <p className="text-neutral-500">Matchup matrix coming soon</p>
-            <p className="mt-1 text-xs text-neutral-600">
-              Win rates and matchup data between top archetypes
-            </p>
+        {format.slug === "standard" ? (
+          <InteractiveMatchupMatrix />
+        ) : (
+          <div className="flex min-h-[200px] items-center justify-center rounded-xl border border-dashed border-border-light bg-bg-secondary">
+            <div className="text-center">
+              <p className="text-neutral-500">Matchup matrix coming soon</p>
+              <p className="mt-1 text-xs text-neutral-600">
+                Win rates and matchup data between top archetypes
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </section>
 
       {/* Top Decks */}

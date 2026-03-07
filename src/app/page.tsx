@@ -36,15 +36,14 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-gold-900/20 via-bg-primary to-bg-primary" />
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:py-28">
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Spike<span className="text-gold-400">Vault</span>
+            MTG<span className="text-gold-400">ProInfo</span>
           </h1>
           <p className="mt-4 max-w-xl text-lg text-gold-200/80 sm:text-xl">
-            Your competitive MTG command center
+            Competitive Magic data, simplified
           </p>
           <p className="mt-3 max-w-2xl text-neutral-400">
-            Free metagame breakdowns, stock decklists, matchup data, and curated
-            pro content for every competitive format. Built by spikes, for
-            spikes.
+            Find metagame breakdowns, matchup matrices, tournament schedules, and top decklists 
+            for every competitive Magic format. Your one-stop resource for competitive play.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
