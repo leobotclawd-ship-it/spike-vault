@@ -72,7 +72,7 @@ export default function InteractiveMatchupMatrix() {
         <table className="text-base">
           <thead className="bg-bg-tertiary border-b border-border sticky top-0">
             <tr>
-              <th className="px-4 py-3 text-left text-gold-400 font-semibold sticky left-0 z-10 bg-bg-tertiary min-w-[100px]">Deck</th>
+              <th className="px-2 py-3 text-left text-gold-400 font-semibold sticky left-0 z-10 bg-bg-tertiary min-w-[50px] text-xs">Deck</th>
               <th className="px-3 py-3 text-center text-neutral-300 font-semibold min-w-[50px]">%</th>
               <th className="px-3 py-3 text-center text-neutral-300 font-semibold min-w-[50px]">WR</th>
               {visibleCols.map(deck => (
@@ -98,7 +98,7 @@ export default function InteractiveMatchupMatrix() {
                   }`}
                 >
                   <td
-                    className="px-4 py-3 font-medium text-white text-sm cursor-pointer hover:text-gold-400 sticky left-0 z-10 bg-inherit min-w-[100px] overflow-hidden text-ellipsis whitespace-nowrap select-none"
+                    className="px-2 py-3 font-medium text-white text-xs cursor-pointer hover:text-gold-400 sticky left-0 z-10 bg-inherit min-w-[50px] max-w-[50px] whitespace-normal break-words select-none"
                     onClick={() => toggleRow(matchup.deckName)}
                     title={`Click to hide: ${matchup.deckName}`}
                   >
