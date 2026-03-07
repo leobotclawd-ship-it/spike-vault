@@ -17,7 +17,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   const format = getFormatBySlug(params.slug);
   if (!format) return { title: "Format Not Found" };
   return {
-    title: `${format.name} Metagame - SpikeVault`,
+    title: `${format.name} Metagame - MTGProInfo`,
     description: format.description,
   };
 }
