@@ -51,8 +51,8 @@ export default function InteractiveMatchupMatrix() {
     setHiddenCols(new Set());
   };
 
-  const visibleRows = allDecks.filter(deck => !hiddenRows.has(deck));
-  const visibleCols = allDecks.filter(deck => !hiddenCols.has(deck));
+  const visibleRows = allDecks.filter(deck => !hiddenRows.has(deck) && deck !== 'Other');
+  const visibleCols = allDecks.filter(deck => !hiddenCols.has(deck) && deck !== 'Other');
 
   return (
     <div className="w-full">
@@ -72,13 +72,13 @@ export default function InteractiveMatchupMatrix() {
         <table className="text-base">
           <thead className="bg-bg-tertiary border-b border-border sticky top-0">
             <tr>
-              <th className="px-3 py-3 text-left text-gold-400 font-semibold sticky left-0 z-10 bg-bg-tertiary min-w-[75px] text-xs">Deck</th>
-              <th className="px-2 py-3 text-center text-neutral-300 font-semibold min-w-[50px] text-xs">Meta%</th>
-              <th className="px-2 py-3 text-center text-neutral-300 font-semibold min-w-[40px] text-xs">WR</th>
+              <th className="px-2 py-2 text-left text-gold-400 font-semibold sticky left-0 z-10 bg-bg-tertiary min-w-[85px] text-xs">Deck</th>
+              <th className="px-1.5 py-2 text-center text-neutral-300 font-semibold min-w-[36px] text-xs">Meta%</th>
+              <th className="px-1.5 py-2 text-center text-neutral-300 font-semibold min-w-[30px] text-xs">WR</th>
               {visibleCols.map(deck => (
                 <th
                   key={deck}
-                  className="px-2 py-3 text-center text-neutral-300 font-semibold min-w-[75px] cursor-pointer hover:bg-gold-900/30 transition-colors select-none"
+                  className="px-1.5 py-2 text-center text-neutral-300 font-semibold min-w-[65px] cursor-pointer hover:bg-gold-900/30 transition-colors select-none"
                   onClick={() => toggleCol(deck)}
                   title={`Click to hide: ${deck}`}
                 >
@@ -89,23 +89,23 @@ export default function InteractiveMatchupMatrix() {
           </thead>
           <tbody>
             {standardMatchups
-              .filter(matchup => !hiddenRows.has(matchup.deckName))
+              .filter(matchup => !hiddenRows.has(matchup.deckName) && matchup.deckName !== 'Other')
               .map((matchup, idx) => (
                 <tr
                   key={matchup.deckName}
-                  className={`border-b border-border/50 hover:bg-bg-secondary/50 transition-colors ${
+                  className={`border-b border-border/30 hover:bg-bg-secondary/50 transition-colors ${
                     idx % 2 === 0 ? 'bg-bg-secondary' : 'bg-bg-primary'
                   }`}
                 >
                   <td
-                    className="px-3 py-3 font-medium text-white text-xs cursor-pointer hover:text-gold-400 sticky left-0 z-10 bg-inherit min-w-[75px] max-w-[75px] whitespace-normal break-words select-none"
+                    className="px-2 py-2 font-medium text-white text-xs cursor-pointer hover:text-gold-400 sticky left-0 z-10 bg-inherit min-w-[85px] max-w-[85px] whitespace-normal break-words select-none"
                     onClick={() => toggleRow(matchup.deckName)}
                     title={`Click to hide: ${matchup.deckName}`}
                   >
                     {matchup.deckName}
                   </td>
-                  <td className="px-2 py-3 text-center text-xs text-neutral-300">{matchup.metaShare}</td>
-                  <td className="px-2 py-3 text-center text-xs font-semibold text-gold-300">{matchup.overallWinrate}</td>
+                  <td className="px-1.5 py-2 text-center text-xs text-neutral-300">{matchup.metaShare}</td>
+                  <td className="px-1.5 py-2 text-center text-xs font-semibold text-gold-300">{matchup.overallWinrate}</td>
                   {visibleCols.map(opponentDeck => {
                     const wr = matchup.matchups[opponentDeck];
                     const isNotApplicable = wr === null;
@@ -124,7 +124,7 @@ export default function InteractiveMatchupMatrix() {
                     return (
                       <td
                         key={opponentDeck}
-                        className={`px-2 py-3 text-center text-sm font-medium min-w-[75px] ${bgColor} ${
+                        className={`px-1.5 py-2 text-center text-xs font-medium min-w-[65px] ${bgColor} ${
                           isNotApplicable ? 'text-neutral-400' : 'text-neutral-100'
                         } border-l border-border/30 cursor-pointer hover:opacity-80 transition-opacity select-none`}
                       >
