@@ -3,23 +3,23 @@
 import { useState } from 'react';
 import { standardMatchups, allDecks } from '@/data/standardMatchupMatrix';
 
-// Abbreviations for column headers
-const deckAbbreviations: Record<string, string> = {
-  'Izzet Lessons': 'IzL',
-  'Mono-Green Landfall': 'MG',
-  'Dimir Excruciator': 'DE',
-  'Simic Rhythm': 'SR',
-  'Dimir Midrange': 'DM',
-  'Izzet Elementals': 'IzE',
-  'Azorius Tempo': 'AT',
-  'Jeskai Control': 'JC',
-  'Izzet Spellementals': 'IzS',
-  'Izzet Prowess': 'IP',
-  'Mono-Red Aggro': 'MRA',
-  'Temur Harmonizer': 'TH',
-  'Boros Dragons': 'BD',
-  'Bant Airbending': 'BA',
-  'Other': 'Oth'
+// Display names for column headers (can span 2 lines)
+const deckDisplayNames: Record<string, string> = {
+  'Izzet Lessons': 'Izzet\nLessons',
+  'Mono-Green Landfall': 'MonoG\nLandfall',
+  'Dimir Excruciator': 'Dimir\nExcruciator',
+  'Simic Rhythm': 'Simic\nRhythm',
+  'Dimir Midrange': 'Dimir\nMidrange',
+  'Izzet Elementals': 'Izzet\nElementals',
+  'Azorius Tempo': 'Azorius\nTempo',
+  'Jeskai Control': 'Jeskai\nControl',
+  'Izzet Spellementals': 'Izzet\nSpellementals',
+  'Izzet Prowess': 'Izzet\nProwess',
+  'Mono-Red Aggro': 'MonoR\nAggro',
+  'Temur Harmonizer': 'Temur\nHarmonizer',
+  'Boros Dragons': 'Boros\nDragons',
+  'Bant Airbending': 'Bant\nAirbending',
+  'Other': 'Other'
 };
 
 export default function InteractiveMatchupMatrix() {
@@ -78,11 +78,11 @@ export default function InteractiveMatchupMatrix() {
               {visibleCols.map(deck => (
                 <th
                   key={deck}
-                  className="px-2 py-3 text-center text-neutral-300 font-semibold min-w-[65px] cursor-pointer hover:bg-gold-900/30 transition-colors select-none"
+                  className="px-2 py-3 text-center text-neutral-300 font-semibold min-w-[75px] cursor-pointer hover:bg-gold-900/30 transition-colors select-none"
                   onClick={() => toggleCol(deck)}
                   title={`Click to hide: ${deck}`}
                 >
-                  <span className="text-xs font-medium">{deckAbbreviations[deck] || deck.substring(0, 3)}</span>
+                  <span className="text-xs font-medium whitespace-pre-wrap leading-tight">{deckDisplayNames[deck] || deck}</span>
                 </th>
               ))}
             </tr>
@@ -124,7 +124,7 @@ export default function InteractiveMatchupMatrix() {
                     return (
                       <td
                         key={opponentDeck}
-                        className={`px-2 py-3 text-center text-sm font-medium min-w-[65px] ${bgColor} ${
+                        className={`px-2 py-3 text-center text-sm font-medium min-w-[75px] ${bgColor} ${
                           isNotApplicable ? 'text-neutral-400' : 'text-neutral-100'
                         } border-l border-border/30 cursor-pointer hover:opacity-80 transition-opacity select-none`}
                       >
