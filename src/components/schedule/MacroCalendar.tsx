@@ -82,10 +82,10 @@ export default function MacroCalendar({ filters }: MacroCalendarProps) {
     <div className="w-full space-y-4">
       {/* Horizontal Scrolling Cards */}
       <div>
-        <h2 className="mb-1 text-base font-bold text-gold-300">
+        <h2 className="mb-1 text-base font-bold text-gold-600 dark:text-gold-300">
           2026 Upcoming Tournament Timeline
         </h2>
-        <p className="mb-3 text-xs text-neutral-400">
+        <p className="mb-3 text-xs text-neutral-600 dark:text-neutral-400">
           Major tournaments from today through end of year
         </p>
 
@@ -107,17 +107,17 @@ export default function MacroCalendar({ filters }: MacroCalendarProps) {
                     }
                   >
                     {/* Event name */}
-                    <p className="font-bold text-white text-xs leading-tight mb-2 line-clamp-2">
+                    <p className="font-bold text-neutral-900 dark:text-white text-xs leading-tight mb-2 line-clamp-2">
                       {event.name}
                     </p>
 
                     {/* Date */}
-                    <p className="text-xs text-neutral-300 mb-2">
+                    <p className="text-xs text-neutral-700 dark:text-neutral-300 mb-2">
                       {formatDate(event.startDate)}
                       {event.endDate && (
                         <>
                           <br />
-                          <span className="text-neutral-400">
+                          <span className="text-neutral-600 dark:text-neutral-400">
                             – {formatDate(event.endDate)}
                           </span>
                         </>
@@ -126,26 +126,26 @@ export default function MacroCalendar({ filters }: MacroCalendarProps) {
 
                     {/* Format */}
                     {event.format && (
-                      <p className="text-xs text-neutral-400">{event.format}</p>
+                      <p className="text-xs text-neutral-600 dark:text-neutral-400">{event.format}</p>
                     )}
 
                     {/* Expanded details */}
                     {expandedEventId === event.id && (
-                      <div className="mt-2 pt-2 border-t border-current border-opacity-30 space-y-1 text-xs text-neutral-400">
+                      <div className="mt-2 pt-2 border-t border-current border-opacity-30 space-y-1 text-xs text-neutral-600 dark:text-neutral-400">
                         <div>
-                          <span className="text-neutral-300">
+                          <span className="text-neutral-700 dark:text-neutral-300">
                             {getEventTypeLabel(event.type)}
                           </span>
                         </div>
                         {event.location && (
                           <p>
-                            <span className="text-neutral-300">Loc:</span>{" "}
+                            <span className="text-neutral-700 dark:text-neutral-300">Loc:</span>{" "}
                             {event.location}
                           </p>
                         )}
                         {event.platform && (
                           <p>
-                            <span className="text-neutral-300">Platform:</span>{" "}
+                            <span className="text-neutral-700 dark:text-neutral-300">Platform:</span>{" "}
                             {event.platform}
                           </p>
                         )}
@@ -160,7 +160,7 @@ export default function MacroCalendar({ filters }: MacroCalendarProps) {
             </div>
           </div>
         ) : (
-          <p className="text-sm text-neutral-500 text-center py-4">
+          <p className="text-sm text-neutral-600 dark:text-neutral-500 text-center py-4">
             No upcoming events match your filters
           </p>
         )}

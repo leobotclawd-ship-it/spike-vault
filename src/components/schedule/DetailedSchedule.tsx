@@ -85,22 +85,22 @@ export default function DetailedSchedule({ filters }: DetailedScheduleProps) {
   const getCategoryBg = (category: string): string => {
     switch(category) {
       case 'major':
-        return 'bg-yellow-900/20';
+        return 'bg-yellow-100 dark:bg-yellow-900/20';
       case 'tabletop':
-        return 'bg-blue-900/20';
+        return 'bg-blue-100 dark:bg-blue-900/20';
       case 'arena':
-        return 'bg-purple-900/20';
+        return 'bg-purple-100 dark:bg-purple-900/20';
       case 'mtgo':
-        return 'bg-green-900/20';
+        return 'bg-green-100 dark:bg-green-900/20';
       default:
-        return 'bg-gray-900/20';
+        return 'bg-gray-100 dark:bg-gray-900/20';
     }
   };
 
   return (
     <div className="w-full">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-white">
+        <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">
           {monthNames[currentMonth - 1]} {currentYear}
         </h2>
         <button
@@ -111,21 +111,21 @@ export default function DetailedSchedule({ filters }: DetailedScheduleProps) {
         </button>
       </div>
 
-      <div className="rounded-xl border border-neutral-700 bg-neutral-900/30 overflow-hidden">
-        <div className="grid grid-cols-7 gap-px bg-neutral-800">
+      <div className="rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900/30 overflow-hidden">
+        <div className="grid grid-cols-7 gap-px bg-neutral-200 dark:bg-neutral-800">
           {dayNames.map((day) => (
             <div
               key={day}
-              className="bg-neutral-900 py-3 px-2 text-center text-sm font-semibold text-gold-300"
+              className="bg-neutral-100 dark:bg-neutral-900 py-3 px-2 text-center text-sm font-semibold text-gold-600 dark:text-gold-300"
             >
               {day}
             </div>
           ))}
         </div>
 
-        <div className="grid grid-cols-7 gap-px bg-neutral-800">
+        <div className="grid grid-cols-7 gap-px bg-neutral-200 dark:bg-neutral-800">
           {Array.from({ length: firstDay }).map((_, i) => (
-            <div key={`empty-${i}`} className="bg-neutral-950 min-h-32"></div>
+            <div key={`empty-${i}`} className="bg-white dark:bg-neutral-950 min-h-32"></div>
           ))}
 
           {Array.from({ length: daysInMonth }).map((_, i) => {
@@ -136,13 +136,13 @@ export default function DetailedSchedule({ filters }: DetailedScheduleProps) {
             return (
               <div
                 key={day}
-                className={`bg-neutral-950 min-h-32 border border-neutral-800 p-2 ${
-                  isToday ? 'bg-gold-900/20 border-gold-700/50' : ''
+                className={`bg-white dark:bg-neutral-950 min-h-32 border border-neutral-200 dark:border-neutral-800 p-2 ${
+                  isToday ? 'bg-gold-100 dark:bg-gold-900/20 border-gold-300 dark:border-gold-700/50' : ''
                 }`}
               >
                 <div
                   className={`text-sm font-bold mb-2 ${
-                    isToday ? 'text-gold-400' : 'text-neutral-300'
+                    isToday ? 'text-gold-700 dark:text-gold-400' : 'text-neutral-700 dark:text-neutral-300'
                   }`}
                 >
                   {day}
@@ -152,14 +152,14 @@ export default function DetailedSchedule({ filters }: DetailedScheduleProps) {
                   {dayEvents.slice(0, 2).map((event) => (
                     <div
                       key={event.id}
-                      className={`text-xs p-1 rounded truncate ${getCategoryColor(event.category)} ${getCategoryBg(event.category)} text-neutral-200`}
+                      className={`text-xs p-1 rounded truncate ${getCategoryColor(event.category)} ${getCategoryBg(event.category)} text-neutral-900 dark:text-neutral-200`}
                       title={event.name}
                     >
                       {event.name}
                     </div>
                   ))}
                   {dayEvents.length > 2 && (
-                    <div className="text-xs text-neutral-500 px-1">
+                    <div className="text-xs text-neutral-600 dark:text-neutral-500 px-1">
                       +{dayEvents.length - 2} more
                     </div>
                   )}
@@ -170,7 +170,7 @@ export default function DetailedSchedule({ filters }: DetailedScheduleProps) {
         </div>
       </div>
 
-      <p className="text-xs text-neutral-500 mt-4">
+      <p className="text-xs text-neutral-600 dark:text-neutral-500 mt-4">
         Current view: March 2026 (today is March 5)
       </p>
     </div>
