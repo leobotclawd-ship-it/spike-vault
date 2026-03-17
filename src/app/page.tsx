@@ -80,9 +80,9 @@ export default function Home() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {upcomingEvents.map((event) => {
               const colors = eventTypeColors[event.type as keyof typeof eventTypeColors] || {
-                bg: "bg-neutral-900/30",
-                text: "text-neutral-300",
-                border: "border-neutral-700/50",
+                bg: "#1f2937",
+                text: "#d1d5db",
+                border: "#4b5563",
               };
               const eventDate = new Date(event.startDate);
               const formattedDate = eventDate.toLocaleDateString("en-US", {
