@@ -94,7 +94,7 @@ export default function Home() {
                 <Link
                   key={event.id}
                   href="/schedule"
-                  className={`rounded-lg border p-4 transition-all ${colors.border} ${colors.bg} hover:border-gold-700/50 hover:bg-gold-900/20`}
+                  className={`rounded-lg border-2 p-4 transition-all ${colors.border} ${colors.bg} hover:opacity-90`}
                 >
                   <div className={`mb-2 text-xs font-semibold uppercase tracking-wide ${colors.text}`}>
                     {event.type === "pro-tour"
@@ -107,21 +107,23 @@ export default function Home() {
                       ? "Arena Weekend"
                       : event.type === "sq-mtgo"
                       ? "SQ MTGO"
-                      : "Set Release"}
+                      : event.type === "set-release"
+                      ? "Set Release"
+                      : "Ban Announcement"}
                   </div>
                   <h3 className="text-sm font-semibold text-white line-clamp-2">
                     {event.name}
                   </h3>
-                  <div className="mt-2 text-xs text-neutral-400">
+                  <div className="mt-2 text-xs text-neutral-300">
                     {formattedDate}
                   </div>
                   {event.location && (
-                    <div className="mt-1 text-xs text-neutral-500">
+                    <div className="mt-1 text-xs text-neutral-300">
                       📍 {event.location}
                     </div>
                   )}
                   {event.format && (
-                    <div className="mt-2 text-xs text-gold-400">
+                    <div className="mt-2 text-xs text-neutral-200">
                       {event.format} →
                     </div>
                   )}
