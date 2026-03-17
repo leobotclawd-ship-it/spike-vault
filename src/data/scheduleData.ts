@@ -41,12 +41,12 @@ export const scheduleEvents: ScheduleEvent[] = [
 ];
 
 export const eventTypeColors = {
-  'pro-tour': { bg: '#713f12', text: '#fef3c7', border: '#f59e0b' },
+  'pro-tour': { bg: '#1e3a8a', text: '#dbeafe', border: '#3b82f6' },
   'rc': { bg: '#064e3b', text: '#d1fae5', border: '#10b981' },
   'arena-direct': { bg: '#4c1d95', text: '#e9d5ff', border: '#a78bfa' },
   'arena-weekend': { bg: '#500724', text: '#fbcfe8', border: '#ec4899' },
   'sq-mtgo': { bg: '#134e4a', text: '#ccfbf1', border: '#14b8a6' },
-  'set-release': { bg: '#7c2d12', text: '#fed7aa', border: '#f97316' },
+  'set-release': { bg: '#713f12', text: '#fef3c7', border: '#fbbf24' },
   'ban-schedule': { bg: '#7f1d1d', text: '#fecaca', border: '#ef4444' }
 };
 
