@@ -63,21 +63,6 @@ export default function MacroCalendar({ filters }: MacroCalendarProps) {
     }
   };
 
-  const getEventColor = (type: string) => {
-    switch (type) {
-      case "pro-tour":
-        return { bg: "bg-gold-500", border: "border-gold-500" };
-      case "rc":
-        return { bg: "bg-emerald-500", border: "border-emerald-500" };
-      case "set-release":
-        return { bg: "bg-orange-500", border: "border-orange-500" };
-      case "ban-schedule":
-        return { bg: "bg-red-500", border: "border-red-500" };
-      default:
-        return { bg: "bg-neutral-500", border: "border-neutral-500" };
-    }
-  };
-
   return (
     <div className="w-full space-y-4">
       {/* Horizontal Scrolling Cards */}
