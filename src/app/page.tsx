@@ -69,7 +69,7 @@ export default function Home() {
       </section>
 
       {/* Upcoming Major Events */}
-      <section className="border-t border-border bg-bg-secondary">
+      <section className="border-t border-border bg-bg-primary">
         <div className="mx-auto max-w-7xl px-4 py-16">
           <h2 className="mb-2 text-2xl font-bold text-white">
             Upcoming Major Events
