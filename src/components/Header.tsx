@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { formats } from "@/data/formats";
-import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   ...formats.map((f) => ({ name: f.name, href: `/format/${f.slug}` })),
@@ -34,9 +33,6 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-
-        {/* Theme toggle */}
-        <ThemeToggle />
 
         {/* Mobile toggle */}
         <button

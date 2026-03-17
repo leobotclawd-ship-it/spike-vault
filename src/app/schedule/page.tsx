@@ -23,32 +23,32 @@ export default function SchedulePage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-6">
       {/* Breadcrumb */}
-      <div className="mb-3 flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-500">
-        <Link href="/" className="hover:text-gold-600 dark:hover:text-gold-400 transition-colors">
+      <div className="mb-3 flex items-center gap-2 text-sm text-neutral-500">
+        <Link href="/" className="hover:text-gold-400 transition-colors">
           Home
         </Link>
         <span>/</span>
-        <span className="text-neutral-700 dark:text-neutral-300">Schedule</span>
+        <span className="text-neutral-300">Schedule</span>
       </div>
 
       {/* Header */}
       <div className="mb-4">
-        <h1 className="text-3xl font-bold text-neutral-900 dark:text-white sm:text-4xl">
+        <h1 className="text-3xl font-bold text-white sm:text-4xl">
           2026 Event Schedule
         </h1>
-        <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+        <p className="mt-2 text-sm text-neutral-400">
           Complete Magic competitive calendar with major tournaments, from
           today through end of year.
         </p>
       </div>
 
       {/* Year Timeline at Top (Macro Calendar) */}
-      <div className="mb-4 rounded-xl border border-gold-300 dark:border-gold-700/30 bg-gradient-to-br from-gold-50 dark:from-gold-950/20 to-gold-100 dark:to-gold-900/10 p-3">
+      <div className="mb-4 rounded-xl border border-gold-700/30 bg-gradient-to-br from-gold-950/20 to-gold-900/10 p-3">
         <MacroCalendar filters={filters} />
       </div>
 
       {/* Divider */}
-      <div className="mb-4 h-px bg-gradient-to-r from-transparent via-gold-300 dark:via-gold-700/30 to-transparent"></div>
+      <div className="mb-4 h-px bg-gradient-to-r from-transparent via-gold-700/30 to-transparent"></div>
 
       {/* Month Calendar (Detailed Schedule) */}
       <div className="mb-4">
@@ -56,8 +56,8 @@ export default function SchedulePage() {
       </div>
 
       {/* Filter UI */}
-      <div className="mb-6 rounded-xl border border-gold-300 dark:border-gold-700/30 bg-gradient-to-br from-gold-50 dark:from-gold-950/20 to-gold-100 dark:to-gold-900/10 p-4">
-        <h2 className="mb-4 text-lg font-semibold text-gold-700 dark:text-gold-300">
+      <div className="mb-6 rounded-xl border border-gold-700/30 bg-gradient-to-br from-gold-950/20 to-gold-900/10 p-4">
+        <h2 className="mb-4 text-lg font-semibold text-gold-300">
           Filter Events by Platform
         </h2>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -68,9 +68,9 @@ export default function SchedulePage() {
               checked={filters.major}
               onChange={() => handleFilterChange("major")}
               disabled
-              className="w-5 h-5 rounded border border-gold-600 bg-gold-100 dark:bg-gold-950/40 cursor-not-allowed accent-gold-600 dark:accent-gold-500 checked:bg-gold-600"
+              className="w-5 h-5 rounded border border-gold-600 bg-gold-950/40 cursor-not-allowed accent-gold-500 checked:bg-gold-600"
             />
-            <span className="text-sm font-medium text-gold-700 dark:text-gold-300 group-hover:text-gold-800 dark:group-hover:text-gold-200 transition-colors">
+            <span className="text-sm font-medium text-gold-300 group-hover:text-gold-200 transition-colors">
               Major Events
             </span>
           </label>
@@ -81,9 +81,9 @@ export default function SchedulePage() {
               type="checkbox"
               checked={filters.tabletop}
               onChange={() => handleFilterChange("tabletop")}
-              className="w-5 h-5 rounded border border-gold-600 bg-neutral-100 dark:bg-neutral-950 cursor-pointer accent-gold-600 dark:accent-gold-500 hover:bg-gold-100 dark:hover:bg-gold-950/20"
+              className="w-5 h-5 rounded border border-gold-600 bg-neutral-950 cursor-pointer accent-gold-500 hover:bg-gold-950/20"
             />
-            <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
+            <span className="text-sm font-medium text-neutral-300 group-hover:text-white transition-colors">
               Paper RCs
             </span>
           </label>
@@ -94,9 +94,9 @@ export default function SchedulePage() {
               type="checkbox"
               checked={filters.arena}
               onChange={() => handleFilterChange("arena")}
-              className="w-5 h-5 rounded border border-gold-600 bg-neutral-100 dark:bg-neutral-950 cursor-pointer accent-gold-600 dark:accent-gold-500 hover:bg-gold-100 dark:hover:bg-gold-950/20"
+              className="w-5 h-5 rounded border border-gold-600 bg-neutral-950 cursor-pointer accent-gold-500 hover:bg-gold-950/20"
             />
-            <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
+            <span className="text-sm font-medium text-neutral-300 group-hover:text-white transition-colors">
               Arena
             </span>
           </label>
@@ -107,14 +107,14 @@ export default function SchedulePage() {
               type="checkbox"
               checked={filters.mtgo}
               onChange={() => handleFilterChange("mtgo")}
-              className="w-5 h-5 rounded border border-gold-600 bg-neutral-100 dark:bg-neutral-950 cursor-pointer accent-gold-600 dark:accent-gold-500 hover:bg-gold-100 dark:hover:bg-gold-950/20"
+              className="w-5 h-5 rounded border border-gold-600 bg-neutral-950 cursor-pointer accent-gold-500 hover:bg-gold-950/20"
             />
-            <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors">
+            <span className="text-sm font-medium text-neutral-300 group-hover:text-white transition-colors">
               MTGO
             </span>
           </label>
         </div>
-        <p className="mt-4 text-xs text-neutral-600 dark:text-neutral-400">
+        <p className="mt-4 text-xs text-neutral-400">
           Major Events (Pro Tours, World Championship, Set Releases) are always
           displayed.
         </p>

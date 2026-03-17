@@ -32,16 +32,16 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-neutral-200 dark:border-border">
-        <div className="absolute inset-0 bg-gradient-to-br from-gold-900/5 via-white dark:from-gold-900/20 dark:via-bg-primary to-white dark:to-bg-primary" />
+      <section className="relative overflow-hidden border-b border-border">
+        <div className="absolute inset-0 bg-gradient-to-br from-gold-900/20 via-bg-primary to-bg-primary" />
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:py-28">
-          <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-5xl lg:text-6xl">
-            MTG<span className="text-gold-600 dark:text-gold-400">ProInfo</span>
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            MTG<span className="text-gold-400">ProInfo</span>
           </h1>
-          <p className="mt-4 max-w-xl text-lg text-gold-700 dark:text-gold-200/80 sm:text-xl">
+          <p className="mt-4 max-w-xl text-lg text-gold-200/80 sm:text-xl">
             Competitive Magic data, simplified
           </p>
-          <p className="mt-3 max-w-2xl text-neutral-600 dark:text-neutral-400">
+          <p className="mt-3 max-w-2xl text-neutral-400">
             Find metagame breakdowns, matchup matrices, tournament schedules, and top decklists 
             for every competitive Magic format. Your one-stop resource for competitive play.
           </p>
