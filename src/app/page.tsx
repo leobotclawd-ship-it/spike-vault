@@ -94,9 +94,14 @@ export default function Home() {
                 <Link
                   key={event.id}
                   href="/schedule"
-                  className={`rounded-lg border-2 p-4 transition-all ${colors.border} ${colors.bg} hover:opacity-90`}
+                  className="rounded-lg border-2 p-4 transition-all hover:opacity-90"
+                  style={{
+                    backgroundColor: colors.bg,
+                    borderColor: colors.border,
+                    color: colors.text
+                  }}
                 >
-                  <div className={`mb-2 text-xs font-semibold uppercase tracking-wide ${colors.text}`}>
+                  <div className="mb-2 text-xs font-semibold uppercase tracking-wide" style={{ color: colors.text }}>
                     {event.type === "pro-tour"
                       ? "Pro Tour"
                       : event.type === "rc"

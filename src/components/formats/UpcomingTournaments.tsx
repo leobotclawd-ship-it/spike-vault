@@ -97,13 +97,17 @@ export default function UpcomingTournaments({
             <a
               key={event.id}
               href={event.tournamentPageUrl || "#"}
-              className={`group block rounded-lg border p-4 transition-colors ${typeColors.bg} ${typeColors.border} border hover:border-gold-600 dark:hover:border-gold-700/50`}
+              className="group block rounded-lg border p-4 transition-colors hover:border-gold-600 dark:hover:border-gold-700/50"
+              style={{
+                backgroundColor: typeColors.bg,
+                borderColor: typeColors.border
+              }}
             >
               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{getEventTypeIcon(event.type)}</span>
-                    <h3 className={`font-semibold transition-colors group-hover:text-gold-600 dark:group-hover:text-gold-400 ${typeColors.text}`}>
+                    <h3 className="font-semibold transition-colors group-hover:text-gold-600 dark:group-hover:text-gold-400" style={{ color: typeColors.text }}>
                       {event.name}
                     </h3>
                   </div>

@@ -41,13 +41,13 @@ export const scheduleEvents: ScheduleEvent[] = [
 ];
 
 export const eventTypeColors = {
-  'pro-tour': { bg: 'bg-yellow-900', text: 'text-yellow-200', border: 'border-yellow-600' },
-  'rc': { bg: 'bg-blue-900', text: 'text-blue-200', border: 'border-blue-600' },
-  'arena-direct': { bg: 'bg-purple-900', text: 'text-purple-200', border: 'border-purple-600' },
-  'arena-weekend': { bg: 'bg-pink-900', text: 'text-pink-200', border: 'border-pink-600' },
-  'sq-mtgo': { bg: 'bg-emerald-900', text: 'text-emerald-200', border: 'border-emerald-600' },
-  'set-release': { bg: 'bg-orange-900', text: 'text-orange-200', border: 'border-orange-600' },
-  'ban-schedule': { bg: 'bg-red-900', text: 'text-red-200', border: 'border-red-600' }
+  'pro-tour': { bg: '#713f12', text: '#fef3c7', border: '#b45309' },
+  'rc': { bg: '#1e3a8a', text: '#dbeafe', border: '#1e40af' },
+  'arena-direct': { bg: '#4c1d95', text: '#e9d5ff', border: '#7c3aed' },
+  'arena-weekend': { bg: '#500724', text: '#fbcfe8', border: '#be185d' },
+  'sq-mtgo': { bg: '#064e3b', text: '#d1fae5', border: '#047857' },
+  'set-release': { bg: '#7c2d12', text: '#fed7aa', border: '#ea580c' },
+  'ban-schedule': { bg: '#7f1d1d', text: '#fecaca', border: '#dc2626' }
 };
 
 export const platformColors = {

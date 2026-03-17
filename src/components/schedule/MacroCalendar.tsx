@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import React, { useState } from "react";
-import { scheduleEvents } from "@/data/scheduleData";
+import { scheduleEvents, eventTypeColors } from "@/data/scheduleData";
 
 interface MacroCalendarProps {
   filters?: {
@@ -94,12 +94,16 @@ export default function MacroCalendar({ filters }: MacroCalendarProps) {
           <div className="overflow-x-auto pb-2 -mx-4 px-4">
             <div className="flex gap-3 min-w-min">
               {importantEvents.map((event) => {
-                const colors = getEventColor(event.type);
+                const colors = eventTypeColors[event.type as keyof typeof eventTypeColors] || eventTypeColors['pro-tour'];
 
                 return (
                   <div
                     key={event.id}
-                    className={`flex-shrink-0 w-32 rounded-lg border-2 ${colors.border} p-2 transition-all cursor-pointer hover:scale-105 hover:shadow-lg ${colors.bg} bg-opacity-10 hover:bg-opacity-20`}
+                    className="flex-shrink-0 w-32 rounded-lg border-2 p-2 transition-all cursor-pointer hover:scale-105 hover:shadow-lg"
+                    style={{
+                      backgroundColor: colors.bg + '40',
+                      borderColor: colors.border
+                    }}
                     onClick={() =>
                       setExpandedEventId(
                         expandedEventId === event.id ? null : event.id
